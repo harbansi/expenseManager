@@ -47,6 +47,7 @@ export class HomeComponent implements OnInit {
     })
     this.expenseService.getTransactionList().subscribe((res: any) => {
       this.dataSource.transactionList = res.data;
+      console.log(this.dataSource.transactionList)
     })
   }
 }

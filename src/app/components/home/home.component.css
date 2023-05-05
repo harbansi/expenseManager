@@ -1,4 +1,21 @@
 .text-light{
     color: #a9a9a9 !important;
+}
 
+.listTile{
+    display: flex;
+    background-color: #222222;
+    min-height: 30px;
+    flex-flow: column wrap;
+    justify-content: space-between;
+    color: #a9a9a9;
+    padding: 8px;
+    border-radius: 5px;
+    margin: 10px 0;
+    border-right: 5px solid red;
+}
+
+.transactionList{
+    height: 300px;
+    overflow-y:scroll;
 }

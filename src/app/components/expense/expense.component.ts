@@ -13,8 +13,9 @@ import { base_URL } from 'src/env/environment';
 export class ExpenseComponent implements OnInit {
   expenseForm!: FormGroup;
   submitted: boolean = false;
-  categoryList: [string] = [''];
-  constructor(private http: HttpClient, private expenseService: ExpenseService) {
+  categoryList!: string[];
+  showCategoryField: boolean = false;
+  constructor(private expenseService: ExpenseService) {
 
   }
 
@@ -22,14 +23,19 @@ export class ExpenseComponent implements OnInit {
     return this.expenseForm.controls;
   }
   ngOnInit(): void {
+    this.showCategoryField = false
+    this.expenseService.getAllCategories('main').subscribe((res: any) => {
+      this.categoryList = Object.keys(res.data);
+      console.log(this.categoryList);
 
-    this.expenseService.getAllExpenses('My Budget 1').subscribe((res: any) => {
-      this.categoryList = res.data.map((i: any) => i.Category);
-    })
+      this.categoryList.push('create New Category')
+
+    });
     this.expenseForm = new FormGroup({
-      label: new FormControl(['', Validators.required]),
-      amount: new FormControl([0, Validators.required]),
-      categories: new FormControl('')
+      label: new FormControl(['', [Validators.required]]),
+      amount: new FormControl([0, [Validators.required]]),
+      categories: new FormControl([null]),
+      newCategory: new FormControl('')
     });
   }
 
@@ -38,15 +44,21 @@ export class ExpenseComponent implements OnInit {
     if (this.expenseForm.valid) {
       console.log(this.expenseForm.value)
 
-      const postData = { expense: { ...this.expenseForm.value }, title: 'My Budget 1' }
-      this.expenseService.addExpense(postData).subscribe((res: any) => {
+      const postData = { expense: { label: this.expenseForm.value.label, amount: this.expenseForm.value.amount, category: this.showCategoryField ? this.expenseForm.value.newCategory : this.expenseForm.value.categories }, title: 'main' }
+      console.log(postData)
+      this.expenseService.addExpense(postData, 'main').subscribe((res: any) => {
         console.log(res)
       });
+      this.resetForm()
     }
   }
   onChangeCategory(event: any) {
-    if (event.target.value == 'create New Category') {
-      console.log('svh')
+    console.log()
+    if (this.expenseForm.value.categories == 'create New Category') {
+      console.log('dj', this.showCategoryField)
+      this.showCategoryField = true;
+    } else {
+      this.showCategoryField = false;
     }
   }
   resetForm() {

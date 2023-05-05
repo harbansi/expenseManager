@@ -13,11 +13,13 @@ export class CategoriesComponent implements OnInit {
   constructor(private ExpenseService: ExpenseService) { }
   ngOnInit(): void {
 
-    this.ExpenseService.getAllExpenses('My Budget 1').subscribe((res: any) => {
+    this.ExpenseService.getAllCategories('main').subscribe((res: any) => {
       this.expenseData = res.data;
-
-      this.parsedExpenseData = this.expenseData.filter((val: any, index: number) => this.expenseData.findIndex((obj: any) => obj.category === val.category) === index)
+      this.parsedExpenseData = Object.keys(this.expenseData).map(key => {
+        return { amount: this.expenseData[key], category: key };
+      });
       console.log(this.parsedExpenseData)
+
     });
   }
 

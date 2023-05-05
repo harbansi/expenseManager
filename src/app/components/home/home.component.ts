@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { base_URL } from 'src/env/environment';
 import { ExpenseService } from 'src/app/services/expenses.service';
 @Component({
   selector: 'app-home',
@@ -14,7 +12,8 @@ export class HomeComponent implements OnInit {
     expenseData: {},
     totalExpense: 0,
     showLoader: true,
-    showDetails: false
+    showDetails: false,
+    transactionList: []
   }
 
   constructor(private expenseService: ExpenseService) {
@@ -27,7 +26,7 @@ export class HomeComponent implements OnInit {
   }
   getData() {
     this.dataSource.showDetails = false;
-    this.expenseService.getAllExpenses('My Budget 1')
+    this.expenseService.getAllExpenses('main')
       .subscribe((res: any) => {
         this.dataSource.showLoader = false
         if (res && res.data) {
@@ -45,6 +44,9 @@ export class HomeComponent implements OnInit {
 
     this.expenseService.getBudget().subscribe((res: any) => {
       this.dataSource.totalBudget = res.data;
+    })
+    this.expenseService.getTransactionList().subscribe((res: any) => {
+      this.dataSource.transactionList = res.data;
     })
   }
 }

@@ -15,19 +15,28 @@ export class ExpenseService {
         return this.httpClient.get(`${base_URL}/expense/${BudgetTitle}`);
     }
 
-    addExpense(postData: any) {
-        return this.httpClient.post(`${base_URL}/expense`, postData);
+    addExpense(postData: any, title: string) {
+        return this.httpClient.post(`${base_URL}/expense/${title}`, postData);
 
     }
 
     getAllCategories(title: string) {
-        return this.httpClient.get(`${base_URL}/category/${title}`);
+        return this.httpClient.get(`${base_URL}/category_expense/${title}`);
     }
-    AddBudget() {
-
+    setBudget(postData: any) {
+        return this.httpClient.post(`${base_URL}/budget`, postData);
     }
     getBudget() {
-        return this.httpClient.get(`${base_URL}/budget/My Budget 1`);
+        return this.httpClient.get(`${base_URL}/budget/main`);
+    }
+
+    appendToBudget(postData: any) {
+        return this.httpClient.patch(`${base_URL}/budget/main`, postData);
+    }
+
+    getTransactionList() {
+        return this.httpClient.get(`${base_URL}/transactionList`);
+
     }
 
 }

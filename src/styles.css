@@ -1,1 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
+
+html {
+    font-size: 14px;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    font-family: sans-serif;
+    background: #111111;
+    color: #999999;
+}
+body {
+    color: #999999;
+}
+
+h1,a,span{
+    color: #999999;
+}
+
+h1,h2,h3,h4,h5,h6{
+    margin: 0 !important;
+}
+
+.budgetBox{
+    display: flex;
+    background-color: #222222;
+    min-height: 150px;
+    flex-flow: column wrap;
+    justify-content: center;
+    color: #a9a9a9;
+}
+.form-control, .form-select{
+    width: 40% !important;
+    background-color: #333333 !important;
+    color: #a9a9a9 !important;
+    border: 1px solid #444444 !important;
+    margin: 0 0 10px 0;
+}
+
+
+

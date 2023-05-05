@@ -1,0 +1,16 @@
+<div class="col-lg-12 p-5">
+    <div class="col-lg-12">
+
+        <div class="row">
+            <h1 class=""> Spending Categories</h1>
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="col-lg-3 align-items-center p-all-0 m-2 budgetBox" *ngFor="let data of parsedExpenseData">
+                <h2 class="text-light"> {{data.category}} </h2>
+                <h2 class="text-success"> ${{data.amount}} </h2>
+            </div>
+        </div>
+    </div>
+</div>

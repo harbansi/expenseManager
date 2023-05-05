@@ -1,0 +1,19 @@
+.mainnavbar{
+    color: #999999 ;
+    background-color: #222222;
+    border-bottom: #333333 1px solid;
+}
+.navbar-brand{
+    color: #999999 !important;
+}
+.sideMenu{
+    color: #999999;
+    background-color: #222222;
+    border-right: #333333 1px solid;
+}
+
+.budgetBox{
+    background-color: #222222;
+    min-height: 150px;
+    align-content: center;
+}

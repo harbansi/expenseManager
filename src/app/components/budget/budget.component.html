@@ -1,0 +1,71 @@
+<div class="col-lg-12 p-5">
+    <div class="row">
+        <h3 class="title">Add an Expense</h3>
+        <p class="subtitle">Adds on to your current expense amount</p>
+    </div>
+
+    <div class="row">
+        <form>
+            <div class="form-group">
+                <label for="budget">Enter Your Budget <span class="text-danger">*</span></label>
+                <input type="number" class="form-control" id="budget" placeholder="Ex. 5000">
+            </div>
+            <!-- <div class="row">
+                <div class="float-end">
+                    <button type="submit" class="btn btn-success m-2"> Add Expense</button>
+                </div>
+            </div> -->
+
+            <div class="row">
+                <div class="float-end">
+                    <button type="submit" class="btn btn-primary m-2"> Set Budget</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="row">
+        <h3 class="title">Add an Income Source</h3>
+        <p class="subtitle">Adds on to your current expense amount</p>
+    </div>
+
+    <div class="row">
+        <form [formGroup]="budgetForm" (ngSubmit)="onSubmitBudget()">
+            <div class="row">
+                <div class="form-group">
+                    <label for="label">Label <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" formControlName="label" id="label"
+                        placeholder="Ex. car Payments" required>
+                    <!-- <span class="text-danger"
+                        *ngIf="(budgetFormControl['label'].touched || submitted) && budgetFormControl['label'].errors?.['required']">
+                        Label is required
+                    </span> -->
+
+                </div>
+                <div class="form-group">
+                    <label for="amount">Amount <span class="text-danger">*</span></label>
+                    <input type="number" class="form-control" formControlName="amount" placeholder="Ex. 2000" id="label"
+                        required>
+                    <span class="text-danger"
+                        *ngIf="(budgetFormControl['amount'].touched || submitted) && budgetFormControl['amount'].errors?.['required']">
+                        Amount is required
+                    </span>
+                </div>
+                <div class="row">
+                    <div class="float-end">
+                        <button type="submit" class="btn btn-primary m-2"> Add To Budget</button>
+                    </div>
+                </div>
+            </div>
+            <hr class="border-1 border-top my-4">
+
+            <div class="row">
+                <div class="float-end">
+                    <button type="submit" class="btn btn-primary m-2"> Add To Budget</button>
+                </div>
+            </div>
+            <hr class="border-1 border-top my-4">
+
+        </form>
+    </div>
+</div>
